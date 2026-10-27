@@ -1,0 +1,19 @@
+EconForge third-party dependency notices
+
+The release inventory contains no dependency binaries or empirical datasets.
+The source audit identified no copied third-party implementation. The numerical implementation imports separately
+installed dependencies. Their licenses are not replaced by the proposed project
+MIT license. The cached dependency wheelhouse is private qualification input and
+must not be uploaded with EconForge.
+
+JAX 0.6.2 and jaxlib 0.6.2: Apache-2.0.
+NumPy 2.2.6 and SciPy 1.15.3: BSD-3-Clause core licensing; their separately
+installed binary wheels carry additional bundled-library license notices.
+ml_dtypes 0.6.0: Apache-2.0, with included notices in its own distribution.
+opt_einsum 3.4.0: MIT.
+
+Consult each installed distribution's complete license files for its contents.
+The source audit found no copyright or third-party-copy notice in EconForge's
+55 original Python modules; that observation is not a warranty of ownership.
+Benchmark model JSON is derived from existing EconForge analytical fixtures;
+no external Dynare model files or third-party empirical dataset is included.

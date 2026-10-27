@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/econforge/run-manifest.schema.json",
+  "title": "EconForge run manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run_id", "inputs", "runtime", "configuration"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "inputs": {"type": "array"},
+    "runtime": {"type": "object"},
+    "configuration": {"type": "object"},
+    "git": {"type": ["object", "null"]},
+    "artifacts": {"type": "array"}
+  }
+}
+

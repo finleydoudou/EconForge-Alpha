@@ -1,0 +1,603 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "model_id",
+    "frequency",
+    "branch_id",
+    "variables",
+    "parameters",
+    "aliases",
+    "observables",
+    "innovations",
+    "equations",
+    "process_means",
+    "covariance",
+    "reference"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "model_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+      "not": {
+        "enum": [
+          "exp",
+          "log"
+        ]
+      }
+    },
+    "frequency": {
+      "type": "string",
+      "minLength": 1
+    },
+    "branch_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "variables": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "role",
+          "unit",
+          "representation",
+          "coordinate",
+          "display_unit",
+          "underlying",
+          "domain",
+          "scale",
+          "baseline"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+            "not": {
+              "enum": [
+                "exp",
+                "log"
+              ]
+            }
+          },
+          "role": {
+            "enum": [
+              "k",
+              "z",
+              "j"
+            ]
+          },
+          "unit": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "label",
+              "dimensions"
+            ],
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "dimensions": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+                  "not": {
+                    "enum": [
+                      "exp",
+                      "log"
+                    ]
+                  }
+                },
+                "additionalProperties": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "representation": {
+            "enum": [
+              "level",
+              "log_level",
+              "declared_deviation"
+            ]
+          },
+          "coordinate": {
+            "enum": [
+              "scaled_level",
+              "unscaled_deviation",
+              "log_deviation"
+            ]
+          },
+          "display_unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "underlying": {
+            "type": "string",
+            "minLength": 1
+          },
+          "domain": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "lower",
+              "upper"
+            ],
+            "properties": {
+              "lower": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "upper": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          },
+          "scale": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "baseline": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "unit",
+          "domain"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+            "not": {
+              "enum": [
+                "exp",
+                "log"
+              ]
+            }
+          },
+          "unit": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "label",
+              "dimensions"
+            ],
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "dimensions": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+                  "not": {
+                    "enum": [
+                      "exp",
+                      "log"
+                    ]
+                  }
+                },
+                "additionalProperties": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "domain": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "lower",
+              "upper"
+            ],
+            "properties": {
+              "lower": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "upper": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            }
+          },
+          "value": {
+            "type": "number"
+          },
+          "expression": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16384
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "value"
+            ],
+            "not": {
+              "required": [
+                "expression"
+              ]
+            }
+          },
+          {
+            "required": [
+              "expression"
+            ],
+            "not": {
+              "required": [
+                "value"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "aliases": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "unit",
+          "expression"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+            "not": {
+              "enum": [
+                "exp",
+                "log"
+              ]
+            }
+          },
+          "unit": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "label",
+              "dimensions"
+            ],
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "dimensions": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+                  "not": {
+                    "enum": [
+                      "exp",
+                      "log"
+                    ]
+                  }
+                },
+                "additionalProperties": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "expression": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16384
+          }
+        }
+      }
+    },
+    "observables": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "unit",
+          "expression"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+            "not": {
+              "enum": [
+                "exp",
+                "log"
+              ]
+            }
+          },
+          "unit": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "label",
+              "dimensions"
+            ],
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "dimensions": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+                  "not": {
+                    "enum": [
+                      "exp",
+                      "log"
+                    ]
+                  }
+                },
+                "additionalProperties": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "expression": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16384
+          }
+        }
+      }
+    },
+    "innovations": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "unit",
+          "scale"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+            "not": {
+              "enum": [
+                "exp",
+                "log"
+              ]
+            }
+          },
+          "unit": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "label",
+              "dimensions"
+            ],
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "dimensions": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+                  "not": {
+                    "enum": [
+                      "exp",
+                      "log"
+                    ]
+                  }
+                },
+                "additionalProperties": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "scale": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          }
+        }
+      }
+    },
+    "equations": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "target",
+          "expression",
+          "unit",
+          "scale",
+          "magnitude"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+            "not": {
+              "enum": [
+                "exp",
+                "log"
+              ]
+            }
+          },
+          "kind": {
+            "enum": [
+              "k_transition",
+              "z_process",
+              "conditional",
+              "identity"
+            ]
+          },
+          "target": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+                "not": {
+                  "enum": [
+                    "exp",
+                    "log"
+                  ]
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expression": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16384
+          },
+          "unit": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "label",
+              "dimensions"
+            ],
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "dimensions": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+                  "not": {
+                    "enum": [
+                      "exp",
+                      "log"
+                    ]
+                  }
+                },
+                "additionalProperties": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "scale": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "magnitude": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "process_means": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+        "not": {
+          "enum": [
+            "exp",
+            "log"
+          ]
+        }
+      },
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "covariance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "values"
+      ],
+      "properties": {
+        "kind": {
+          "const": "diagonal"
+        },
+        "values": {
+          "type": "array",
+          "maxItems": 256,
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z_0-9]*$",
+        "not": {
+          "enum": [
+            "exp",
+            "log"
+          ]
+        }
+      },
+      "additionalProperties": {
+        "type": "number"
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/econforge/model.schema.json",
+  "title": "EconForge bounded supplied-point model v1",
+  "$comment": "Runtime admission additionally enforces UTF-8 byte, AST, aggregate symbol, unit, role, graph, domain and incidence constraints. Passing JSON Schema alone never creates a validated model."
+}

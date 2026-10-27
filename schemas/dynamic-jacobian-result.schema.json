@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EconForge P3.4 original integrand date partials",
+  "type": "object",
+  "required": ["schema_version", "claim", "assessment_status", "execution_status", "ad_execution_status", "input_admission_status", "derivative_valid", "blocks", "flattened_jacobian", "shape", "equation_order", "variable_order", "slot_order", "reference", "backend", "dtype", "checks", "diagnostics", "failure_reason", "metadata", "model_status", "independent_validation_status", "benchmark_status"],
+  "properties": {
+    "schema_version": {"const": 2},
+    "claim": {"const": "original_integrand_date_partials_at_verified_reference_point_checks"},
+    "assessment_status": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL", "REFUSED", "NOT_RUN", "NOT_IMPLEMENTED"]},
+    "execution_status": {"enum": ["COMPLETED", "FAILED", "NOT_RUN"]},
+    "ad_execution_status": {"enum": ["COMPLETED", "FAILED", "NOT_RUN"]},
+    "derivative_valid": {"type": "boolean"},
+    "input_admission_status": {"enum": ["ADMITTED", "NOT_ADMITTED"], "description": "Existing scalar input.valid checkpoint: trusted model AND finite domain-valid candidate admitted; does not imply residual acceptance or AD success."},
+    "model_status": {"const": "NOT_EVALUATED"},
+    "independent_validation_status": {"const": "NOT_RUN"},
+    "benchmark_status": {"const": "NOT_RUN"},
+    "backend": {"const": "jax.jacfwd"},
+    "dtype": {"enum": ["float64", null]},
+    "blocks": {"type": ["array", "null"], "minItems": 3, "maxItems": 3,
+      "items": {"type": "object", "required": ["name", "offset", "jacobian", "row_normalized_jacobian", "coordinate_normalized_jacobian", "shape", "equation_order", "variable_order", "source_to_canonical_variables", "canonical_to_source_variables", "source_to_canonical_equations", "canonical_to_source_equations"]}},
+    "metadata": {"type": "object", "properties": {"model_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+    "failure_reason": {"type": ["string", "null"]}
+  },
+  "allOf": [
+    {"if": {"properties": {"derivative_valid": {"const": false}}},
+     "then": {"properties": {"blocks": {"const": null}, "flattened_jacobian": {"const": null}, "shape": {"const": null}, "dtype": {"const": null}}}},
+    {"if": {"properties": {"input_admission_status": {"const": "ADMITTED"}}},
+     "then": {"properties": {"metadata": {"required": ["model_hash"]}}},
+     "else": {"properties": {"metadata": {"maxProperties": 0}, "derivative_valid": {"const": false}, "assessment_status": {"enum": ["FAIL", "REFUSED"]}, "ad_execution_status": {"const": "NOT_RUN"}, "execution_status": {"enum": ["FAILED", "NOT_RUN"]}}}}
+  ]
+}

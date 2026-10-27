@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/econforge/config.schema.json",
+  "title": "EconForge application configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": 1},
+    "output_dir": {"type": "string", "minLength": 1},
+    "offline": {"type": "boolean"},
+    "logging": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "enum": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+        },
+        "format": {"enum": ["text", "json"]}
+      }
+    }
+  }
+}
+

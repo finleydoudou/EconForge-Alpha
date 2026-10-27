@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "model_id": "scalar_known_candidate",
+  "frequency": "one_model_period",
+  "branch_id": "supplied_positive_candidate",
+  "variables": [
+    {
+      "id": "x",
+      "role": "j",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "representation": "level",
+      "coordinate": "scaled_level",
+      "display_unit": "level",
+      "underlying": "dimensionless scalar algebra fixture",
+      "domain": {
+        "lower": null,
+        "upper": null
+      },
+      "scale": 1,
+      "baseline": 2
+    }
+  ],
+  "parameters": [],
+  "aliases": [],
+  "observables": [],
+  "innovations": [],
+  "equations": [
+    {
+      "id": "square",
+      "kind": "conditional",
+      "target": null,
+      "expression": "x^2-4",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "scale": 1,
+      "magnitude": 4
+    }
+  ],
+  "process_means": {},
+  "covariance": {
+    "kind": "diagonal",
+    "values": []
+  },
+  "reference": {
+    "x": 2
+  }
+}

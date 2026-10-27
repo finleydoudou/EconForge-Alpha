@@ -1,0 +1,296 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EconForge P3.3 steady root scientific envelope v2",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "claim",
+    "assessment_status",
+    "execution_status",
+    "attempts",
+    "clusters",
+    "selected_attempt_id",
+    "solution_candidate",
+    "variable_order",
+    "equation_order",
+    "checks",
+    "diagnostics",
+    "warnings",
+    "metadata",
+    "model_status",
+    "benchmark_status",
+    "external_validation",
+    "capability_maturity",
+    "failure_reason"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "claim": {
+      "const": "locally_found_steady_root_with_independent_scalar_verification"
+    },
+    "assessment_status": {
+      "enum": [
+        "PASS",
+        "PASS_WITH_WARNINGS",
+        "FAIL",
+        "REFUSED",
+        "NOT_IMPLEMENTED",
+        "NOT_RUN"
+      ]
+    },
+    "execution_status": {
+      "enum": [
+        "COMPLETED",
+        "FAILED",
+        "NOT_RUN",
+        "SKIPPED"
+      ]
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/attempt"
+      }
+    },
+    "clusters": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "selected_attempt_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "solution_candidate": {
+      "$ref": "#/$defs/vector"
+    },
+    "variable_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "equation_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1
+    },
+    "diagnostics": {
+      "type": "array"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "model_status": {
+      "const": "NOT_EVALUATED"
+    },
+    "benchmark_status": {
+      "const": "NOT_RUN"
+    },
+    "external_validation": {
+      "const": "NOT_RUN"
+    },
+    "capability_maturity": {
+      "const": "IMPLEMENTED"
+    },
+    "failure_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "$defs": {
+    "vector": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "number"
+      }
+    },
+    "attempt": {
+      "type": "object",
+      "required": [
+        "attempt_id",
+        "initial_candidate",
+        "solution_candidate",
+        "assessment_status",
+        "execution_status",
+        "solver_execution_status",
+        "solver_converged",
+        "candidate_finite",
+        "independently_verified",
+        "verification",
+        "iterations",
+        "function_evaluations",
+        "jacobian_evaluations",
+        "termination_code",
+        "termination_message",
+        "checks",
+        "diagnostics",
+        "warnings",
+        "metadata",
+        "failure_reason"
+      ],
+      "properties": {
+        "attempt_id": {
+          "type": "string"
+        },
+        "initial_candidate": {
+          "$ref": "#/$defs/vector"
+        },
+        "solution_candidate": {
+          "$ref": "#/$defs/vector"
+        },
+        "assessment_status": {
+          "enum": [
+            "PASS",
+            "PASS_WITH_WARNINGS",
+            "FAIL",
+            "REFUSED",
+            "NOT_IMPLEMENTED",
+            "NOT_RUN"
+          ]
+        },
+        "execution_status": {
+          "enum": [
+            "COMPLETED",
+            "FAILED",
+            "NOT_RUN",
+            "SKIPPED"
+          ]
+        },
+        "solver_execution_status": {
+          "enum": [
+            "COMPLETED",
+            "FAILED",
+            "NOT_RUN",
+            "SKIPPED"
+          ]
+        },
+        "solver_converged": {
+          "type": "boolean"
+        },
+        "candidate_finite": {
+          "type": "boolean"
+        },
+        "independently_verified": {
+          "type": "boolean"
+        },
+        "verification": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "iterations": {
+          "const": null
+        },
+        "function_evaluations": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "jacobian_evaluations": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "termination_code": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "termination_message": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "checks": {
+          "type": "array"
+        },
+        "diagnostics": {
+          "type": "array"
+        },
+        "warnings": {
+          "type": "array"
+        },
+        "metadata": {
+          "type": "object"
+        },
+        "failure_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "assessment_status": {
+            "enum": [
+              "PASS",
+              "PASS_WITH_WARNINGS"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "solution_candidate": {
+            "type": "array",
+            "minItems": 1
+          },
+          "selected_attempt_id": {
+            "type": "string"
+          },
+          "attempts": {
+            "minItems": 1
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "solution_candidate": {
+            "type": "null"
+          },
+          "selected_attempt_id": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

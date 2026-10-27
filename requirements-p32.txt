@@ -1,0 +1,8 @@
+# P3.2 CPU AD environment; direct versions frozen in MATH_SPEC section 15.
+# Transitive versions resolved and OSV-scanned on 2026-10-01.
+jax==0.6.2
+jaxlib==0.6.2
+numpy==2.2.6
+scipy==1.15.3
+ml_dtypes==0.6.0
+opt_einsum==3.4.0

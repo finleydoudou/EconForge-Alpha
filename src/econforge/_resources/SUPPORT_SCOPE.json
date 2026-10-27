@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "candidate_version": "0.1.0a1",
+  "approval": "PENDING_OWNER_SCOPE_DECISION",
+  "public_supported_proposal": [
+    "econforge.model.parse_model",
+    "econforge.residuals.evaluate_residuals",
+    "econforge.steady_jacobian.evaluate_steady_jacobian",
+    "econforge.steady_state.solve_steady_state",
+    "econforge.root_results.Start",
+    "econforge.root_policy.SolveLimits"
+  ],
+  "engineering_cli": [
+    "version",
+    "doctor",
+    "config-check"
+  ],
+  "experimental": [
+    "custom user models within the same parser/domain beyond the five qualified benchmark starts; no model-wide validation claim"
+  ],
+  "implemented_but_unsupported": [
+    "dynamic_jacobian",
+    "matrix_assembly",
+    "qz",
+    "bk",
+    "gh",
+    "innovation",
+    "stochastic",
+    "finite_irf"
+  ],
+  "internal_not_distributed": [
+    "tests",
+    "tools",
+    "validation/sv1",
+    "authority/enrollment records",
+    "historical raw evidence"
+  ],
+  "not_authorized": [
+    "P3.10",
+    "broader G1/T1 activation",
+    "native ACTIVE",
+    "simulation",
+    "estimation",
+    "higher-order methods"
+  ],
+  "environment": {
+    "platform": "macOS 26.5 arm64",
+    "python": "3.12.14",
+    "other_platforms": "UNSUPPORTED",
+    "linux_scientific_certification": "NOT_CLAIMED"
+  },
+  "release_level_validation": "NOT_CLAIMED"
+}

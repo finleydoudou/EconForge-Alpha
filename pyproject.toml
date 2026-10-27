@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools==84.0.0", "wheel==0.48.0", "packaging==26.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "econforge"
+version = "0.1.0a1"
+description = "Numerical economics research toolkit for reproducible RBC and New Keynesian steady-state examples"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "LicenseRef-Pending-Owner-Approval"
+license-files = ["LICENSE-STATUS.txt", "THIRD_PARTY_NOTICES.txt"]
+dependencies = []
+classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Python :: 3.12", "Operating System :: MacOS :: MacOS X", "Topic :: Scientific/Engineering"]
+
+[project.urls]
+Repository = "https://github.com/finleydoudou/EconForge-Alpha"
+Issues = "https://github.com/finleydoudou/EconForge-Alpha/issues"
+
+[project.optional-dependencies]
+ad = ["jax==0.6.2", "jaxlib==0.6.2", "numpy==2.2.6", "scipy==1.15.3", "ml_dtypes==0.6.0", "opt_einsum==3.4.0"]
+
+[project.scripts]
+econforge = "econforge.cli:entrypoint"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["econforge", "econforge.*"]
+
+[tool.setuptools.package-data]
+econforge = ["_resources/examples/*.json", "_resources/examples/*.py", "_resources/docs/*.md", "_resources/SUPPORT_SCOPE.json"]

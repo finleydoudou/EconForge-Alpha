@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "model_id": "NK_A",
+  "frequency": "quarterly",
+  "branch_id": "supplied_analytic",
+  "variables": [
+    {
+      "id": "v",
+      "role": "z",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "representation": "declared_deviation",
+      "coordinate": "unscaled_deviation",
+      "display_unit": "normalized units",
+      "underlying": "zero-baseline quarterly decimal rate or log output gap",
+      "domain": {
+        "lower": null,
+        "upper": null
+      },
+      "scale": 1,
+      "baseline": 0.0
+    },
+    {
+      "id": "x",
+      "role": "j",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "representation": "declared_deviation",
+      "coordinate": "unscaled_deviation",
+      "display_unit": "normalized units",
+      "underlying": "zero-baseline quarterly decimal rate or log output gap",
+      "domain": {
+        "lower": null,
+        "upper": null
+      },
+      "scale": 1,
+      "baseline": 0.0
+    },
+    {
+      "id": "pi",
+      "role": "j",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "representation": "declared_deviation",
+      "coordinate": "unscaled_deviation",
+      "display_unit": "normalized units",
+      "underlying": "zero-baseline quarterly decimal rate or log output gap",
+      "domain": {
+        "lower": null,
+        "upper": null
+      },
+      "scale": 1,
+      "baseline": 0.0
+    }
+  ],
+  "parameters": [
+    {
+      "id": "beta",
+      "value": 0.99,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "domain": {
+        "lower": 0,
+        "upper": 1
+      }
+    },
+    {
+      "id": "sigma",
+      "value": 1,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "domain": {
+        "lower": 0,
+        "upper": null
+      }
+    },
+    {
+      "id": "kappa",
+      "value": 0.1,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "domain": {
+        "lower": 0,
+        "upper": null
+      }
+    },
+    {
+      "id": "phi_pi",
+      "value": 1.5,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "domain": {
+        "lower": null,
+        "upper": null
+      }
+    },
+    {
+      "id": "phi_x",
+      "value": 0.5,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "domain": {
+        "lower": null,
+        "upper": null
+      }
+    },
+    {
+      "id": "rho_v",
+      "value": 0.5,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "domain": {
+        "lower": -1,
+        "upper": 1
+      }
+    }
+  ],
+  "aliases": [
+    {
+      "id": "i",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "expression": "phi_pi*pi+phi_x*x+v"
+    }
+  ],
+  "observables": [],
+  "innovations": [
+    {
+      "id": "u",
+      "unit": {
+        "label": "quarterly decimal policy-rule innovation",
+        "dimensions": {}
+      },
+      "scale": 1
+    }
+  ],
+  "equations": [
+    {
+      "id": "v_process",
+      "expression": "v(+1)-rho_v*v-u(+1)",
+      "kind": "z_process",
+      "target": "v",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "scale": 1.0,
+      "magnitude": 1.0
+    },
+    {
+      "id": "IS",
+      "expression": "x-x(+1)+(i-pi(+1))/sigma",
+      "kind": "conditional",
+      "target": null,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "scale": 1.0,
+      "magnitude": 1.0
+    },
+    {
+      "id": "NKPC",
+      "expression": "pi-beta*pi(+1)-kappa*x",
+      "kind": "conditional",
+      "target": null,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "scale": 1.0,
+      "magnitude": 1.0
+    },
+    {
+      "id": "Taylor",
+      "expression": "i-phi_pi*pi-phi_x*x-v",
+      "kind": "identity",
+      "target": null,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "scale": 1.0,
+      "magnitude": 1.0
+    }
+  ],
+  "process_means": {
+    "v": 0
+  },
+  "covariance": {
+    "kind": "diagonal",
+    "values": [
+      6.25e-06
+    ]
+  },
+  "reference": {
+    "v": 0.0,
+    "x": 0.0,
+    "pi": 0.0
+  }
+}

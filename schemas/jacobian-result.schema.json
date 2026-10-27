@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EconForge steady residual Jacobian scientific envelope v2",
+  "type": "object",
+  "required": ["schema_version", "claim", "assessment_status", "execution_status", "ad_execution_status", "derivative_valid", "jacobian", "row_normalized_jacobian", "shape", "equation_order", "variable_order", "candidate", "backend", "dtype", "checks", "diagnostics", "metadata", "independent_validation_status", "benchmark_status", "model_status"],
+  "properties": {
+    "schema_version": {"const": 2},
+    "claim": {"const": "steady_residual_AD_Jacobian_point_checks"},
+    "assessment_status": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL", "REFUSED", "NOT_IMPLEMENTED", "NOT_RUN"]},
+    "execution_status": {"enum": ["COMPLETED", "FAILED", "NOT_RUN", "SKIPPED"]},
+    "ad_execution_status": {"enum": ["COMPLETED", "FAILED", "NOT_RUN", "SKIPPED"]},
+    "derivative_valid": {"type": "boolean"},
+    "jacobian": {"$ref": "#/$defs/matrix"},
+    "row_normalized_jacobian": {"$ref": "#/$defs/matrix"},
+    "shape": {"oneOf": [{"type": "null"}, {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 1}}]},
+    "equation_order": {"type": "array", "items": {"type": "string"}},
+    "variable_order": {"type": "array", "items": {"type": "string"}},
+    "candidate": {"type": ["array", "null"], "items": {"type": "number"}},
+    "backend": {"const": "jax.jacfwd"},
+    "dtype": {"enum": ["float64", null]},
+    "checks": {"type": "array", "minItems": 1},
+    "diagnostics": {"type": "array"},
+    "metadata": {"type": "object"},
+    "independent_validation_status": {"const": "NOT_RUN"},
+    "benchmark_status": {"const": "NOT_RUN"},
+    "model_status": {"const": "NOT_EVALUATED"}
+  },
+  "$defs": {
+    "matrix": {"oneOf": [{"type": "null"}, {"type": "array", "minItems": 1, "items": {"type": "array", "minItems": 1, "items": {"type": "number"}}}]}
+  },
+  "allOf": [
+    {"if": {"properties": {"derivative_valid": {"const": true}}},
+     "then": {"properties": {"assessment_status": {"enum": ["PASS", "PASS_WITH_WARNINGS"]}, "execution_status": {"const": "COMPLETED"}, "ad_execution_status": {"const": "COMPLETED"}, "jacobian": {"type": "array"}, "row_normalized_jacobian": {"type": "array"}, "shape": {"type": "array"}, "dtype": {"const": "float64"}}},
+     "else": {"properties": {"jacobian": {"type": "null"}, "row_normalized_jacobian": {"type": "null"}, "shape": {"type": "null"}}}}
+  ]
+}

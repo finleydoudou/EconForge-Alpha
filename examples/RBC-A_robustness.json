@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "model_id": "RBC_A",
+  "frequency": "quarterly",
+  "branch_id": "supplied_analytic",
+  "variables": [
+    {
+      "id": "K",
+      "role": "k",
+      "unit": {
+        "label": "goods normalized by fixed one-period stock/flow unit",
+        "dimensions": {}
+      },
+      "representation": "level",
+      "coordinate": "log_deviation",
+      "display_unit": "normalized units",
+      "underlying": "explicit normalized quantity",
+      "domain": {
+        "lower": 0,
+        "upper": null
+      },
+      "scale": 0.18101933598375616,
+      "baseline": 0.18101933598375616
+    },
+    {
+      "id": "z",
+      "role": "z",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "representation": "log_level",
+      "coordinate": "unscaled_deviation",
+      "display_unit": "normalized units",
+      "underlying": "log productivity relative to unit technology",
+      "domain": {
+        "lower": null,
+        "upper": null
+      },
+      "scale": 1,
+      "baseline": 0.0
+    },
+    {
+      "id": "c",
+      "role": "j",
+      "unit": {
+        "label": "goods normalized by fixed one-period stock/flow unit",
+        "dimensions": {}
+      },
+      "representation": "level",
+      "coordinate": "log_deviation",
+      "display_unit": "normalized units",
+      "underlying": "explicit normalized quantity",
+      "domain": {
+        "lower": 0,
+        "upper": null
+      },
+      "scale": 0.3846660889654819,
+      "baseline": 0.3846660889654819
+    }
+  ],
+  "parameters": [
+    {
+      "id": "alpha",
+      "value": 0.3333333333333333,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "domain": {
+        "lower": 0,
+        "upper": 1
+      }
+    },
+    {
+      "id": "beta",
+      "value": 0.96,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "domain": {
+        "lower": 0,
+        "upper": 1
+      }
+    },
+    {
+      "id": "rho",
+      "value": 0.9,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "domain": {
+        "lower": -1,
+        "upper": 1
+      }
+    },
+    {
+      "id": "delta",
+      "value": 1,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "domain": {
+        "lower": null,
+        "upper": null
+      }
+    },
+    {
+      "id": "gamma",
+      "value": 1,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "domain": {
+        "lower": 0,
+        "upper": null
+      }
+    }
+  ],
+  "aliases": [],
+  "observables": [
+    {
+      "id": "Y",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "expression": "exp(z)*K^alpha"
+    },
+    {
+      "id": "I",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "expression": "exp(z)*K^alpha-c"
+    }
+  ],
+  "innovations": [
+    {
+      "id": "u",
+      "unit": {
+        "label": "physical log productivity innovation",
+        "dimensions": {}
+      },
+      "scale": 1
+    }
+  ],
+  "equations": [
+    {
+      "id": "resource",
+      "expression": "K(+1)+c-exp(z)*K^alpha",
+      "kind": "k_transition",
+      "target": "K",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "scale": 0.565685424949238,
+      "magnitude": 0.565685424949238
+    },
+    {
+      "id": "productivity",
+      "expression": "z(+1)-rho*z-u(+1)",
+      "kind": "z_process",
+      "target": "z",
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "scale": 1.0,
+      "magnitude": 1.0
+    },
+    {
+      "id": "euler",
+      "expression": "c^(-1)-beta*alpha*exp(z(+1))*K(+1)^(alpha-1)*c(+1)^(-1)",
+      "kind": "conditional",
+      "target": null,
+      "unit": {
+        "label": "dimensionless",
+        "dimensions": {}
+      },
+      "scale": 2.5996572837740715,
+      "magnitude": 2.5996572837740715
+    }
+  ],
+  "process_means": {
+    "z": 0
+  },
+  "covariance": {
+    "kind": "diagonal",
+    "values": [
+      0.0001
+    ]
+  },
+  "reference": {
+    "K": 0.18101933598375616,
+    "z": 0.0,
+    "c": 0.3846660889654819
+  }
+}

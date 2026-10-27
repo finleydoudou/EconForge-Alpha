@@ -1,0 +1,117 @@
+[
+  {
+    "case_id": "RBC-A_primary",
+    "model_file": "RBC-A_primary.json",
+    "initial_guess": [
+      0.14481546878700494,
+      0.0,
+      0.46159930675857824
+    ],
+    "target": [
+      0.18101933598375616,
+      0.0,
+      0.3846660889654819
+    ],
+    "scales": [
+      0.18101933598375616,
+      1,
+      0.3846660889654819
+    ],
+    "reference_atol": 1e-08,
+    "reference_rtol": 1e-06,
+    "oracle_origin": "accepted tests/root_fixtures.py benchmark_cases + tests/residual_fixtures.py; analytic formulas, not solver output",
+    "derivation": "Frozen independent closed-form Kbar,cbar in NUMERICAL_VALIDATION_PLAN section 3; no solver-derived target"
+  },
+  {
+    "case_id": "RBC-A_robustness",
+    "model_file": "RBC-A_robustness.json",
+    "initial_guess": [
+      0.2172232031805074,
+      0.0,
+      0.3077328711723855
+    ],
+    "target": [
+      0.18101933598375616,
+      0.0,
+      0.3846660889654819
+    ],
+    "scales": [
+      0.18101933598375616,
+      1,
+      0.3846660889654819
+    ],
+    "reference_atol": 1e-08,
+    "reference_rtol": 1e-06,
+    "oracle_origin": "accepted tests/root_fixtures.py benchmark_cases + tests/residual_fixtures.py; analytic formulas, not solver output",
+    "derivation": "Frozen independent closed-form Kbar,cbar in NUMERICAL_VALIDATION_PLAN section 3; no solver-derived target"
+  },
+  {
+    "case_id": "RBC-B_primary",
+    "model_file": "RBC-B_primary.json",
+    "initial_guess": [
+      30.391402830521805,
+      0.0,
+      3.305192967763827
+    ],
+    "target": [
+      37.989253538152255,
+      0.0,
+      2.754327473136523
+    ],
+    "scales": [
+      37.989253538152255,
+      1,
+      2.754327473136523
+    ],
+    "reference_atol": 1e-08,
+    "reference_rtol": 1e-06,
+    "oracle_origin": "accepted tests/root_fixtures.py benchmark_cases + tests/residual_fixtures.py; analytic formulas, not solver output",
+    "derivation": "Frozen independent closed-form Kbar,cbar in NUMERICAL_VALIDATION_PLAN section 3; no solver-derived target"
+  },
+  {
+    "case_id": "RBC-B_robustness",
+    "model_file": "RBC-B_robustness.json",
+    "initial_guess": [
+      45.587104245782704,
+      0.0,
+      2.2034619785092184
+    ],
+    "target": [
+      37.989253538152255,
+      0.0,
+      2.754327473136523
+    ],
+    "scales": [
+      37.989253538152255,
+      1,
+      2.754327473136523
+    ],
+    "reference_atol": 1e-08,
+    "reference_rtol": 1e-06,
+    "oracle_origin": "accepted tests/root_fixtures.py benchmark_cases + tests/residual_fixtures.py; analytic formulas, not solver output",
+    "derivation": "Frozen independent closed-form Kbar,cbar in NUMERICAL_VALIDATION_PLAN section 3; no solver-derived target"
+  },
+  {
+    "case_id": "NK-A",
+    "model_file": "NK-A.json",
+    "initial_guess": [
+      0.001,
+      0.001,
+      0.001
+    ],
+    "target": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scales": [
+      1,
+      1,
+      1
+    ],
+    "reference_atol": 1e-08,
+    "reference_rtol": 1e-06,
+    "oracle_origin": "accepted tests/root_fixtures.py benchmark_cases + tests/residual_fixtures.py; analytic formulas, not solver output",
+    "derivation": "Homogeneous steady gap system has independent zero target; Taylor identity is retained"
+  }
+]

@@ -1,0 +1,343 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/econforge/results.schema.json",
+  "title": "EconForge P3.1A scientific residual envelope v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "claim",
+    "assessment_status",
+    "execution_status",
+    "model_status",
+    "evaluation_valid",
+    "residuals_within_tolerance",
+    "variable_order",
+    "equation_order",
+    "candidate",
+    "rows",
+    "residual_vector",
+    "normalized_residual_vector",
+    "max_absolute_residual",
+    "residual_norm",
+    "normalized_residual_norm",
+    "worst_equation",
+    "norm_definition",
+    "diagnostics",
+    "checks",
+    "metadata",
+    "warnings",
+    "failure_reason",
+    "capability_maturity"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "claim": {
+      "const": "supplied_candidate_steady_residuals_within_tolerance"
+    },
+    "assessment_status": {
+      "enum": [
+        "PASS",
+        "PASS_WITH_WARNINGS",
+        "FAIL",
+        "REFUSED",
+        "NOT_IMPLEMENTED",
+        "NOT_RUN"
+      ]
+    },
+    "execution_status": {
+      "enum": [
+        "COMPLETED",
+        "FAILED",
+        "NOT_RUN",
+        "SKIPPED"
+      ]
+    },
+    "model_status": {
+      "const": "NOT_EVALUATED"
+    },
+    "evaluation_valid": {
+      "type": "boolean"
+    },
+    "residuals_within_tolerance": {
+      "type": "boolean"
+    },
+    "variable_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "equation_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "norm_definition": {
+      "const": "infinity_norm"
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/diagnostic"
+      }
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "check_id",
+          "status",
+          "summary",
+          "evidence",
+          "details"
+        ],
+        "properties": {
+          "check_id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "WARN",
+              "FAIL",
+              "UNSUPPORTED",
+              "NOT_IMPLEMENTED",
+              "NOT_RUN"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array"
+          },
+          "details": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "equation_id",
+          "source_index",
+          "kind",
+          "expression",
+          "residual",
+          "normalized_residual",
+          "raw_threshold",
+          "normalized_threshold",
+          "raw_margin",
+          "normalized_margin",
+          "within_tolerance",
+          "diagnostic"
+        ],
+        "properties": {
+          "equation_id": {
+            "type": "string"
+          },
+          "source_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "kind": {
+            "enum": [
+              "k_transition",
+              "z_process",
+              "conditional",
+              "identity"
+            ]
+          },
+          "expression": {
+            "type": "string"
+          },
+          "residual": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "normalized_residual": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "raw_threshold": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "normalized_threshold": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "raw_margin": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "normalized_margin": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "within_tolerance": {
+            "type": "boolean"
+          },
+          "diagnostic": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/$defs/diagnostic"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "candidate": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "number"
+      }
+    },
+    "residual_vector": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "number"
+      }
+    },
+    "normalized_residual_vector": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "number"
+      }
+    },
+    "max_absolute_residual": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "residual_norm": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "normalized_residual_norm": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "worst_equation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "failure_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "capability_maturity": {
+      "enum": [
+        "DRAFT_MATH",
+        "REVIEWED_SPEC",
+        "IMPLEMENTED",
+        "TESTED",
+        "REFERENCE_CHECKED"
+      ]
+    }
+  },
+  "$defs": {
+    "diagnostic": {
+      "type": "object",
+      "required": [
+        "code",
+        "message",
+        "source",
+        "start",
+        "end",
+        "symbol",
+        "unsupported"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "start": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "end": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "symbol": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unsupported": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
+

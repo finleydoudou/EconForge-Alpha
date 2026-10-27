@@ -1,0 +1,5 @@
+PRIVATE PRE-APPROVAL CANDIDATE — NOT FOR PUBLIC DISTRIBUTION.
+No open-source license has been adopted. MIT is proposed, subject to explicit
+owner confirmation of licensing authority and exact copyright-holder wording.
+The proposed license text is retained outside this publication tree.
+Final license adoption requires new distributions and exact-byte review.
