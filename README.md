@@ -10,8 +10,6 @@ The project aims to make numerical economics workflows easier to inspect, reprod
 
 **Current status: Experimental Alpha.**
 
-> Publication preparation: this repository is staged privately. No public release or open-source license has been approved yet. The download instructions below describe the prepared release assets; use them after the approved GitHub prerelease is available.
-
 ## What is EconForge?
 
 Economic models describe relationships between quantities such as capital, consumption, productivity, inflation and the output gap. At a steady state, the model's equilibrium equations must hold simultaneously. EconForge reads a bounded JSON model, evaluates how far a proposed state is from satisfying those equations, computes its steady-state Jacobian, and searches for a root from an explicit starting point.
@@ -41,7 +39,7 @@ The supported interfaces are `parse_model`, `evaluate_residuals`, `evaluate_stea
 
 The qualified environment is **macOS 26.5 on Apple silicon, CPython 3.12.14**. Other platforms and Python versions have not been qualified. Python package metadata permits 3.12 only.
 
-GitHub Releases is the planned distribution channel. EconForge is not published to PyPI or TestPyPI by this release process. From the [Alpha release page](https://github.com/finleydoudou/EconForge-Alpha/releases/tag/v0.1.0-alpha.1), download these files into one directory after publication:
+GitHub Releases is the distribution channel. EconForge is not published to PyPI or TestPyPI by this release process. From the [Alpha release page](https://github.com/finleydoudou/EconForge-Alpha/releases/tag/v0.1.0-alpha.1), download these files into one directory:
 
 - `econforge-0.1.0a1-py3-none-any.whl`
 - `econforge-0.1.0a1.tar.gz`
@@ -158,18 +156,18 @@ The Python distributions also install the guides and example files under `econfo
 
 The numerical stack pins JAX/jaxlib **0.6.2**, NumPy **2.2.6**, SciPy **1.15.3**, ml_dtypes **0.6.0** and opt_einsum **3.4.0**. Use CPU float64, disabled JIT and the thread settings above.
 
-Frozen RC1 engineering evidence records 221 unchanged public-scope regression tests and five analytical example checks for each selected distribution. Three controlled local builds produced identical wheels and identical normalized source archives. Publication preparation changes documentation and metadata, so it has a separate identity and requires its own installation checks and final acceptance. A version number alone never identifies accepted bytes. These are local checks, not independent cross-platform certification.
+Release qualification includes 221 unchanged public-scope regression tests and five analytical example checks against each installed distribution. Controlled local builds must produce identical wheels and identical normalized source archives, and final publication requires independent acceptance of the exact source and artifact hashes. A version number alone never identifies accepted bytes. These are local checks, not independent cross-platform certification.
 
 Keep your downloaded artifact SHA256, model JSON, explicit initial guess, complete result and environment with every research result. See [reproduction guidance](docs/REPRODUCIBILITY.md).
 
 ## License
 
-MIT is the proposed license. Owner confirmation of licensing authority and copyright-holder wording is pending; this private preparation grants no open-source license. Final publication will include the approved `LICENSE` and consistent distribution metadata. Dependencies are separately installed and retain their own licenses; see [third-party notices](THIRD_PARTY_NOTICES.txt).
+EconForge is licensed under the [MIT License](LICENSE). Copyright (c) 2026 finleydoudou. The public developer name is a pseudonym; it does not identify a separate company or change ownership. Dependencies are separately installed and retain their own licenses; see [third-party notices](THIRD_PARTY_NOTICES.txt).
 
 ## Contributing
 
-After publication, report reproducible problems in [GitHub Issues](https://github.com/finleydoudou/EconForge-Alpha/issues). Include the version and artifact hash, environment, minimal model and initial guess, full result and expected analytical behavior. Remove credentials and private data. See [CONTRIBUTING.md](CONTRIBUTING.md) before proposing numerical changes.
+Report reproducible problems in [GitHub Issues](https://github.com/finleydoudou/EconForge-Alpha/issues). Include the version and artifact hash, environment, minimal model and initial guess, full result and expected analytical behavior. Remove credentials and private data. See [CONTRIBUTING.md](CONTRIBUTING.md) before proposing numerical changes.
 
 ## Citation
 
-Cite **EconForge, version 0.1.0a1, Experimental Alpha**, the [GitHub release](https://github.com/finleydoudou/EconForge-Alpha/releases/tag/v0.1.0-alpha.1), the artifact SHA256 and your access date after the release is published. Cite model equations and economic sources separately. No DOI, paper or institutional endorsement is claimed.
+Cite **EconForge, version 0.1.0a1, Experimental Alpha**, the [GitHub release](https://github.com/finleydoudou/EconForge-Alpha/releases/tag/v0.1.0-alpha.1), the artifact SHA256 and your access date. Cite model equations and economic sources separately. No DOI, paper or institutional endorsement is claimed.

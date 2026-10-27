@@ -2,7 +2,7 @@ EconForge third-party dependency notices
 
 The release inventory contains no dependency binaries or empirical datasets.
 The source audit identified no copied third-party implementation. The numerical implementation imports separately
-installed dependencies. Their licenses are not replaced by the proposed project
+installed dependencies. Their licenses are not replaced by the project
 MIT license. The cached dependency wheelhouse is private qualification input and
 must not be uploaded with EconForge.
 

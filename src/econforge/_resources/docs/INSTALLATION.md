@@ -2,7 +2,7 @@
 
 Use CPython 3.12.14 on macOS 26.5 arm64 for the qualified configuration. The wheel tag describes packaging compatibility, not scientific certification. Linux, Windows, Intel Mac and other interpreter versions are unqualified.
 
-After the approved GitHub prerelease is published, download the wheel, source archive and SHA256SUMS.txt from its release page. Follow the README's exact filenames and verify both downloads with `shasum -a 256 -c SHA256SUMS.txt`. Never substitute an unverified package found under the same name on an index.
+Download the wheel, source archive and SHA256SUMS.txt from its release page. Follow the README's exact filenames and verify both downloads with `shasum -a 256 -c SHA256SUMS.txt`. Never substitute an unverified package found under the same name on an index.
 
 ## Wheel
 

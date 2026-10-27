@@ -8,8 +8,9 @@ version = "0.1.0a1"
 description = "Numerical economics research toolkit for reproducible RBC and New Keynesian steady-state examples"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
-license = "LicenseRef-Pending-Owner-Approval"
-license-files = ["LICENSE-STATUS.txt", "THIRD_PARTY_NOTICES.txt"]
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.txt"]
+authors = [{name = "finleydoudou"}]
 dependencies = []
 classifiers = ["Development Status :: 3 - Alpha", "Programming Language :: Python :: 3.12", "Operating System :: MacOS :: MacOS X", "Topic :: Scientific/Engineering"]
 

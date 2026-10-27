@@ -1,6 +1,6 @@
 # Scientific and support limitations
 
-This Alpha proposal supports the parser/residual/steady AD/root APIs and five
+This Alpha supports the parser/residual/steady AD/root APIs and five
 fixed RBC/NK starts on the one qualified macOS environment. Custom models in the
 same grammar are experimental research use until users independently validate
 their economics and numerical domain. Scope does not certify global uniqueness,
